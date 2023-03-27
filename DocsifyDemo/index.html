@@ -37,20 +37,14 @@
             .then(response => response.json())
             .then(data => {
                 if (data.clientPrincipal) {
-                    const pattern = /@qapitol.com/;
+                    const pattern = /@gmail.com/;
                    if (document.getElementById("data").innerHTML = pattern.test(`${data.clientPrincipal.userDetails}`)){
-                    window.navigate("main.html");
+                    window.navigate("/main.html");
                    }
                    else{
                     userInfo.innerText = "You are not authorized"
-                    window.navigate("index.html");
+                    window.navigate("/index.html");
                    }
-                    const button = document.createElement("button");
-                    button.innerText = "Logout";
-                    button.onclick = () => {
-                        window.location.href = "/.auth/logout";
-                    };
-                    loginButtons.appendChild(button);
                 } else {
                     userInfo.innerText = "Hello anonymous";
                 }
