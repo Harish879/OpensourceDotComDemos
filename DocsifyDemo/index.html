@@ -20,16 +20,13 @@
     </div>
     <p id="data"></p>
     <script>
-        const providers = ["github", "twitter", "facebook", "aad", "google"];
         const loginButtons = document.getElementById("loginButtons");
-        providers.forEach(provider => {
+        
             const button = document.createElement("button");
-            button.innerText = `Login with ${provider}`;
+            button.innerText = `Login with Microsoft Account`;
             button.onclick = () => {
-                window.location.href = `/.auth/login/${provider}`;
-            };
+                window.location.href = `/.auth/login/aad`;
             loginButtons.appendChild(button);
-        });
 
         const userInfo = document.getElementById("userInfo");
         const userDetails = document.getElementById("userDetails");
@@ -39,7 +36,7 @@
                 if (data.clientPrincipal) {
                     const pattern = /@gmail.com/;
                    if (document.getElementById("data").innerHTML = pattern.test(`${data.clientPrincipal.userDetails}`)){
-                    window.navigate("/main.html");
+                    window.location.href = `/main.html`
                    }
                    else{
                     userInfo.innerText = "You are not authorized"
