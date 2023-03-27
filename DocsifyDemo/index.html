@@ -18,6 +18,7 @@
     </code>
     <div id="apiResult">
     </div>
+    <p id="data"></p>
     <script>
         const providers = ["github", "twitter", "facebook", "aad", "google"];
         const loginButtons = document.getElementById("loginButtons");
@@ -36,7 +37,9 @@
             .then(response => response.json())
             .then(data => {
                 if (data.clientPrincipal) {
-                    userInfo.innerText = `Hello ${data.clientPrincipal.userDetails}`;
+                    userInfo.innerText = `${data.clientPrincipal.userDetails}`;
+                    const pattern = /z/;
+                    document.getElementById("data").innerHTML = pattern.test(userInfo);
                     userDetails.innerText = JSON.stringify(data.clientPrincipal, null, 2);
                     const button = document.createElement("button");
                     button.innerText = "Logout";
@@ -44,19 +47,6 @@
                         window.location.href = "/.auth/logout";
                     };
                     loginButtons.appendChild(button);
-
-                    // invoke api/Messages and display the result
-                    const apiResult = document.getElementById("apiResult");
-                    const button2 = document.createElement("button");
-                    button2.innerText = "Invoke API";
-                    button2.onclick = () => {
-                        fetch("/api/Messages")
-                            .then(response => response.text())
-                            .then(data => {
-                                apiResult.innerText = data;
-                            });
-                    };
-                    loginButtons.appendChild(button2);
                 } else {
                     userInfo.innerText = "Hello anonymous";
                 }
