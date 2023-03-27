@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Static Web Apps - Authentication</h1>
+    <h1>Qapitol QA Sauron - Documentation</h1>
     <div id="loginButtons"></div>
     <div id="userInfo">
 
@@ -20,11 +20,11 @@
     </div>
     <p id="data"></p>
     <script>
-        const providers = ["github", "twitter", "facebook", "aad"];
+        const providers = ["aad"];
         const loginButtons = document.getElementById("loginButtons");
         providers.forEach(provider => {
             const button = document.createElement("button");
-            button.innerText = `Login with ${provider}`;
+            button.innerText = 'Login with Microsoft';
             button.onclick = () => {
                 window.location.href = `/.auth/login/${provider}`;
             };
@@ -39,11 +39,12 @@
                 if (data.clientPrincipal) {
                     const pattern = /@gmail.com/;
                    if (document.getElementById("data").innerHTML = pattern.test(`${data.clientPrincipal.userDetails}`)){
+                    userInfo.innerText = "You are authorized"
                     window.location.href = `/main.html`;
                    }
                    else{
                     userInfo.innerText = "You are not authorized"
-                    window.navigate("/index.html");
+                    window.location.href = `/main.html`;
                    }
                 } else {
                     userInfo.innerText = "Hello anonymous";
