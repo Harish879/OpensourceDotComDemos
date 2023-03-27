@@ -1,34 +1,67 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Static Web Apps - Authentication</title>
 </head>
+
 <body>
-  <div id="userInfo">
-
-  </div>
-  <code id="userDetails">
-
-  </code>
     <h1>Static Web Apps - Authentication</h1>
-    <nav class="menu auth">
-      <p class="menu-label">Auth</p>
-      <div class="menu-list auth">
-        <ng-container *ngIf="!userInfo; else logout">
-          <ng-container *ngFor="let provider of providers">
-            <a href="/.auth/login/aad?post_login_redirect_uri=/main.html">Login with AAD</a>
-          </ng-container>
-        </ng-container>
-        <ng-template #logout>
-          <a href="/.auth/logout?post_logout_redirect_uri=/index.html">Logout</a>
-        </ng-template>
-      </div>
-    </nav>
+    <div id="loginButtons"></div>
+    <div id="userInfo">
+
+    </div>
+    <code id="userDetails">
+
+    </code>
+    <div id="apiResult">
+    </div>
     <script>
-      const userInfo = document.getElementById("userInfo");
-      const userDetails = document.getElementById("userDetails");
+        const providers = ["github", "twitter", "facebook", "aad", "google"];
+        const loginButtons = document.getElementById("loginButtons");
+        providers.forEach(provider => {
+            const button = document.createElement("button");
+            button.innerText = `Login with ${provider}`;
+            button.onclick = () => {
+                window.location.href = `/.auth/login/${provider}`;
+            };
+            loginButtons.appendChild(button);
+        });
+
+        const userInfo = document.getElementById("userInfo");
+        const userDetails = document.getElementById("userDetails");
+        fetch("/.auth/me")
+            .then(response => response.json())
+            .then(data => {
+                if (data.clientPrincipal) {
+                    userInfo.innerText = `Hello ${data.clientPrincipal.userDetails}`;
+                    userDetails.innerText = JSON.stringify(data.clientPrincipal, null, 2);
+                    const button = document.createElement("button");
+                    button.innerText = "Logout";
+                    button.onclick = () => {
+                        window.location.href = "/.auth/logout";
+                    };
+                    loginButtons.appendChild(button);
+
+                    // invoke api/Messages and display the result
+                    const apiResult = document.getElementById("apiResult");
+                    const button2 = document.createElement("button");
+                    button2.innerText = "Invoke API";
+                    button2.onclick = () => {
+                        fetch("/api/Messages")
+                            .then(response => response.text())
+                            .then(data => {
+                                apiResult.innerText = data;
+                            });
+                    };
+                    loginButtons.appendChild(button2);
+                } else {
+                    userInfo.innerText = "Hello anonymous";
+                }
+            });
     </script>
 </body>
+
 </html>
