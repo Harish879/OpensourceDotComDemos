@@ -39,11 +39,11 @@
                 if (data.clientPrincipal) {
                     const pattern = /@gmail.com/;
                    if (pattern.test(`${data.clientPrincipal.userDetails}`)){
-                    window.location.href = `/index.html`;
+                    window.location.href = `/main.html`;
                    }
                    else{
                     userInfo.innerText = "You are not authorized"
-                    window.navigate("/index.html");
+                    window.location.href = `/index.html`;
                    }
                 } else {
                     userInfo.innerText = "Hello anonymous";
