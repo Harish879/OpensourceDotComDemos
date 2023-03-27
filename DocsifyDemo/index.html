@@ -39,8 +39,7 @@
                 if (data.clientPrincipal) {
                     userInfo.innerText = `${data.clientPrincipal.userDetails}`;
                     const pattern = /@qapitol.com/;
-                    document.getElementById("data").innerHTML = pattern.test(userInfo);
-                    userDetails.innerText = JSON.stringify(data.clientPrincipal, null, 2);
+                    document.getElementById("data").innerHTML = pattern.test(`${data.clientPrincipal.userDetails}`);
                     const button = document.createElement("button");
                     button.innerText = "Logout";
                     button.onclick = () => {
