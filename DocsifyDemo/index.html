@@ -12,11 +12,11 @@
       <div class="menu-list auth">
         <ng-container *ngIf="!userInfo; else logout">
           <ng-container *ngFor="let provider of providers">
-            <a href="/.auth/login/aad?post_login_redirect_uri=/main.html">{{provider}}</a>
+            <a href="/.auth/login/aad?post_login_redirect_uri=/main.html">Login with AAD</a>
           </ng-container>
         </ng-container>
         <ng-template #logout>
-          <a href="/.auth/logout?post_logout_redirect_uri=/main.html">Logout</a>
+          <a href="/.auth/logout?post_logout_redirect_uri=/index.html">Logout</a>
         </ng-template>
       </div>
     </nav>

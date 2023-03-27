@@ -10,6 +10,14 @@
   <title>Docsify Demo</title>
 </head>
 <body>
+  <nav class="menu auth">
+    <p class="menu-label">Auth</p>
+    <div class="menu-list auth">
+      <ng-template #logout>
+        <a href="/.auth/logout?post_logout_redirect_uri=/index.html">Logout</a>
+      </ng-template>
+    </div>
+  </nav>
   <div id="app"></div>
   <script>
     window.$docsify = {
