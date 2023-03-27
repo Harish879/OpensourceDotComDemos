@@ -6,6 +6,12 @@
     <title>Static Web Apps - Authentication</title>
 </head>
 <body>
+  <div id="userInfo">
+
+  </div>
+  <code id="userDetails">
+
+  </code>
     <h1>Static Web Apps - Authentication</h1>
     <nav class="menu auth">
       <p class="menu-label">Auth</p>
@@ -20,5 +26,14 @@
         </ng-template>
       </div>
     </nav>
+    <script>
+      const userInfo = document.getElementById("userInfo");
+      const userDetails = document.getElementById("userDetails");
+    </script>
+    <div class="user" *ngIf="userInfo">
+      <p>Welcome</p>
+      <p>{{ userInfo?.userDetails }}</p>
+      <p>{{ userInfo?.identityProvider }}</p>
+    </div>
 </body>
 </html>
