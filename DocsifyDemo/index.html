@@ -40,11 +40,11 @@
                     const pattern = /@gmail.com/;
                    if (document.getElementById("data").innerHTML = pattern.test(`${data.clientPrincipal.userDetails}`)){
                     userInfo.innerText = "You are authorized"
-                    window.location.href = `/index.html`;
+                    window.location.href = `/main.html`;
                    }
                    else{
                     userInfo.innerText = "You are not authorized"
-                    window.location.href = `/main.html`;
+                    window.location.href = `/index.html`;
                    }
                 } 
             });
