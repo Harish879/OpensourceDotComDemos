@@ -37,9 +37,14 @@
             .then(response => response.json())
             .then(data => {
                 if (data.clientPrincipal) {
-                    userInfo.innerText = `${data.clientPrincipal.userDetails}`;
                     const pattern = /@qapitol.com/;
-                    document.getElementById("data").innerHTML = pattern.test(`${data.clientPrincipal.userDetails}`);
+                   if (document.getElementById("data").innerHTML = pattern.test(`${data.clientPrincipal.userDetails}`)){
+                    window.navigate("main.html");
+                   }
+                   else{
+                    userInfo.innerText = "You are not authorized"
+                    window.navigate("index.html");
+                   }
                     const button = document.createElement("button");
                     button.innerText = "Logout";
                     button.onclick = () => {
