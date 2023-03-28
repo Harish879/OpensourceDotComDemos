@@ -37,14 +37,15 @@
             .then(response => response.json())
             .then(data => {
                 if (data.clientPrincipal) {
-                    const pattern = /@gmail.com/;
-                   if (document.getElementById("data").innerHTML = pattern.test(`${data.clientPrincipal.userDetails}`)){
+                    var pattern = /@gmail.com/;
+                    var result = pattern.test(`${data.clientPrincipal.userDetails}`);
+                   if (result){
                     userInfo.innerText = "You are authorized"
-                    window.location.href = `/main.html`;
+                    window.location.href = '/main.html';
                    }
                    else{
                     userInfo.innerText = "You are not authorized"
-                    window.location.href = `/index.html`;
+                    window.location.href = '/index.html';
                    }
                 } 
             });
