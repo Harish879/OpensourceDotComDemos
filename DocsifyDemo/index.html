@@ -48,10 +48,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <script>
 function myFunction(){
 window.location.href = '/.auth/login/aad';
-(async () => {
-  const response = await fetch("/.auth/me");
-  const data = await response.json();
-  if (data.clientPrincipal) {
+wait(5000);
+fetch("/.auth/me")
+            .then(response => response.json())
+            .then(data => {
+                if (data.clientPrincipal) {
                     var pattern = /@gmail.com/;
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
                    if (result){
@@ -63,7 +64,7 @@ window.location.href = '/.auth/login/aad';
                     window.location.href = '/index.html';
                    }
                 } 
-})();
+            });
         }
 </script>
 </body>
