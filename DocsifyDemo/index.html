@@ -1,108 +1,48 @@
-<!doctype html>
-<html lang="en">
-<head>
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-* {box-sizing: border-box;}
+body {font-family: Arial, Helvetica, sans-serif;}
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
 }
 
-.topnav {
-  overflow: hidden;
-  background-color: #e9e9e9;
-}
-
-.topnav a {
+.navbar a {
   float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
+  padding: 12px;
+  color: white;
   text-decoration: none;
   font-size: 17px;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
+.navbar a:hover {
+  background-color: #000;
 }
 
-.topnav a.active {
-  background-color: #2196F3;
-  color: white;
+.active {
+  background-color: #04AA6D;
 }
 
-.topnav .login-container {
-  float: right;
-}
-
-.topnav input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 17px;
-  border: none;
-  width:120px;
-}
-
-.topnav .login-container button {
-  float: right;
-  padding: 6px 10px;
-  margin-top: 8px;
-  margin-right: 16px;
-  background-color: #555;
-  color: white;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
-
-.topnav .login-container button:hover {
-  background-color: green;
-}
-
-@media screen and (max-width: 600px) {
-  .topnav .login-container {
-    float: none;
-  }
-  .topnav a, .topnav input[type=text], .topnav .login-container button {
+@media screen and (max-width: 500px) {
+  .navbar a {
     float: none;
     display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
   }
 }
 </style>
-</head>
-
 <body>
-    <div id="loginButtons"></div>
-    <div id="userInfo">
 
-    </div>
-    <code id="userDetails">
+<h2>Responsive Navigation Bar with Icons</h2>
+<p>Try to resize the browser window to see the responsive effect.</p>
 
-    </code>
-    <div id="apiResult">
-    </div>
-    <p id="data"></p>
-	<div class="topnav">
-	<a class="active" href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-  <div class="login-container">
-  <a href="/.auth/login/aad?post_login_redirect_uri=main.html">Login</a>
-  <a href="/.auth/logout?post_logout_redirect_uri=index.html">Logout</a>
-  </div>
-  </div>
-</nav>
-	</div>
+<div class="navbar">
+  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
+  <a href="/.auth/login/aad?post_login_redirect_uri=main.html"><i class="fa fa-fw fa-user"></i> Login</a>
+  <a href="/.auth/login/aad?post_login_redirect_uri=index.html"><i class="fa fa-fw fa-user"></i> Login</a>
+</div>
 </body>
-</html>
+</html> 
