@@ -44,7 +44,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <script>
 function myFunction(){
 window.location.href = '/.auth/login/aad';
-myFunc();
+window.onbeforeunload = myFunc();
 }
 function myFunc(){
 wait(5000);
