@@ -46,7 +46,7 @@ function myFunction(){
 window.location.href = '/.auth/login/aad';
 myFunc();
 }
-myFunc(){
+function myFunc(){
 fetch("/.auth/me")
             .then(response => response.json())
             .then(data => {
