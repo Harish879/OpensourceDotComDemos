@@ -42,15 +42,17 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <a href="/.auth/login/aad?post_login_redirect_uri=index.html"><i class="fa fa-fw fa-user"></i> Logout</a>
 </div>
 <script>
-async function myFunction(){
+function myFunction(){
 window.location.href = '/.auth/login/aad';
-window.onbeforeunload = myFunc();
+myFunc();
 }
+
 async function myFunc(){
-wait(5000);
-fetch("/.auth/me")
-            .then(response => response.json())
-            .then(data => {
+      const response = await fetch('/.auth/me');
+      const payload = await response.json();
+      console.log('payload')
+      const { clientPrincipal } = payload;
+      console.log(clientPrincipal);
                 if (data.clientPrincipal) {
                     var pattern = /@gmail.com/;
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
@@ -63,7 +65,6 @@ fetch("/.auth/me")
                     window.location.href = '/index.html';
                    }
                 } 
-            });
         }
 </script>
 </body>
