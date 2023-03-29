@@ -52,8 +52,6 @@ async function myFunc(){
       const data = await response.json();
       console.log('payload')
       wait(500000000000);
-      const { clientPrincipal } = payload;
-      console.log(clientPrincipal);
                 if (data.clientPrincipal) {
                     var pattern = /@gmail.com/;
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
