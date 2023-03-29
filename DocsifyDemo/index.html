@@ -48,10 +48,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <script>
 function myFunction(){
 window.location.href = '/.auth/login/aad';
-fetch("/.auth/me")
-            .then(response => response.json())
-            .then(data => {
-                if (data.clientPrincipal) {
+(async () => {
+  const response = await fetch("/.auth/me");
+  const data = await response.json();
+  if (data.clientPrincipal) {
                     var pattern = /@gmail.com/;
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
                    if (result){
@@ -63,7 +63,7 @@ fetch("/.auth/me")
                     window.location.href = '/index.html';
                    }
                 } 
-            });
+})();
         }
 </script>
 </body>
