@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Static Web Apps - Authentication</title>
+</head>
+
+<body>
+    <h1>Qapitol QA Sauron - Documentation</h1>
+    <div id="loginButtons"></div>
+    <div id="userInfo">
+
+    </div>
+    <code id="userDetails">
+
+    </code>
+    <div id="apiResult">
+    </div>
+    <p id="data"></p>
+    <script>
+        const providers = ["aad"];
+        const loginButtons = document.getElementById("loginButtons");
+        providers.forEach(provider => {
+            const button = document.createElement("button");
+            button.innerText = 'Login with Microsoft';
+            button.onclick = () => {
+                window.location.href = `/.auth/login/${provider}`;
+            };
+            loginButtons.appendChild(button);
+        });
+           myFun().then(data => {
+                if (data.clientPrincipal) {
+                    var pattern = /@gmail.com/;
+                    var result = pattern.test(`${data.clientPrincipal.userDetails}`);
+                   if (result){
+                    console.log("You are authorized");
+                    window.location.href = '/main.html';
+                   }
+                   else{
+                    console.log("You are not authorized");
+                    window.location.href = '/index.html';
+                   }
+                } 
+            });
+ async function myFun() {
+  const response = await fetch('/.auth/me');
+  const data = await response.json();
+  return data;
+}
+    </script>
+</body>
+</html>
