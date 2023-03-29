@@ -42,13 +42,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <a href="/.auth/login/aad?post_login_redirect_uri=index.html"><i class="fa fa-fw fa-user"></i> Logout</a>
 </div>
 <script>
-function myFunction(){
+async function myFunction(){
 window.location.href = '/.auth/login/aad';
 wait(500000);
-            myfun().then(data => {
-                if (data.clientPrincipal) {
-                    var pattern = /@gmail.com/;
-                    var result = pattern.test(`${data.clientPrincipal.userDetails}`);
+const userInfo = document.getElementById("userInfo");
+const userDetails = document.getElementById("userDetails");
+userInfo = await this.myFun();
+userDetails.innerText = `Hello ${data.clientPrincipal.userDetails}`;
+var pattern = /@gmail.com/;
+var result = pattern.test(`${data.clientPrincipal.userDetails}`);
                    if (result){
                     console.log("You are authorized");
                     window.location.href = '/main.html';
@@ -57,13 +59,13 @@ wait(500000);
                     console.log("You are not authorized");
                     window.location.href = '/index.html';
                    }
-                } 
-            });
         }
-async function myfun(){
+async function myFun(){
     const response = await fetch('/.auth/me');
-    const data = await response.json();
-    return data;
+    const payload = await response.json();
+    const { clientPrincipal } = payload;
+    console.log(clientPrincipal);
+    return clientPrincipal; 
 }
 </script>
 </body>
