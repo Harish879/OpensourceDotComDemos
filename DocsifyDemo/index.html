@@ -47,8 +47,7 @@ window.location.href = '/.auth/login/aad';
 wait(500000);
 const userInfo = document.getElementById("userInfo");
 const userDetails = document.getElementById("userDetails");
-userInfo = await this.myFun();
-userDetails.innerText = `Hello ${data.clientPrincipal.userDetails}`;
+userInfo.innerText = await this.myFun();
 var pattern = /@gmail.com/;
 var result = pattern.test(`${data.clientPrincipal.userDetails}`);
                    if (result){
