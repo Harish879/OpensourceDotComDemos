@@ -57,10 +57,10 @@ fetch("/.auth/me")
                     window.location.replace('/index.html');
                    }
                 }
-                _callback();  
+                 
             });
             wait(60000000000);
-            return;
+            _callback(); 
         }
  async function myFun() {
   const response = await fetch('/.auth/me');
