@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -34,15 +35,19 @@ body {font-family: Arial, Helvetica, sans-serif;}
   }
 }
 </style>
+</head>
 <body>
-<div class="navbar">
-  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
-  <a class="active" onclick="myFunction()"><i class="fa fa-fw fa-user"></i> Login</a>
-  <a href="/.auth/login/aad?post_login_redirect_uri=index.html"><i class="fa fa-fw fa-user"></i> Logout</a>
-</div>
 <script>
-    function myFunction(){
-    window.location.href = '/.auth/login/aad';
+    const providers = ["aad"];
+        const loginButtons = document.getElementById("loginButtons");
+        providers.forEach(provider => {
+            const button = document.createElement("button");
+            button.innerText = 'Login with Microsoft';
+            button.onclick = () => {
+                window.location.href = `/.auth/login/${provider}`;
+            };
+            loginButtons.appendChild(button);
+        });
     fetch("/.auth/me")
                 .then(response => response.json())
                 .then(data => {
@@ -60,13 +65,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
                     } 
                 });
             }
-     async function myFun() {
-      const response = await fetch('/.auth/me');
-      const data = await response.json();
-      return data;
-    }
-    
     </script>
-
 </body>
 </html> 
