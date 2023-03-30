@@ -41,9 +41,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <a href="/.auth/login/aad?post_login_redirect_uri=index.html"><i class="fa fa-fw fa-user"></i> Logout</a>
 </div>
 <script>
-function myFunction(){
+async function myFunction(){
 window.location.href = '/.auth/login/aad';
-fetch("/.auth/me")
+await fetch("/.auth/me")
             .then(response => response.json())
             .then(data => {
                 if (data.clientPrincipal) {
