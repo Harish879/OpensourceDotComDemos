@@ -37,15 +37,15 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <body>
 <div class="navbar">
   <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
-  <div class="btn">
-    <button onclick="myFunction()">Login</button>
-   </div>
+  <a href="#" onclick="myFunction()"><i class="fa fa-fw fa-user"></i> Login</a>
   <a href="/.auth/login/aad?post_login_redirect_uri=index.html"><i class="fa fa-fw fa-user"></i> Logout</a>
 </div>
 <script>
 function myFunction(){
 window.location.href = '/.auth/login/aad';
-        myFun().then(data => {
+fetch("/.auth/me")
+            .then(response => response.json())
+            .then(data => {
                 if (data.clientPrincipal) {
                     var pattern = /@gmail.com/;
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
