@@ -47,7 +47,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <script>
 async function myFunction(){
 window.location.href = '/.auth/login/aad';
-    await myFun().then(data => {
+    await xm().then(data => {
                 if (data.clientPrincipal) {
                     var pattern = /@gmail.com/;
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
@@ -66,6 +66,13 @@ window.location.href = '/.auth/login/aad';
   const response = await fetch('/.auth/me');
   const data = await response.json();
   return data;
+}
+function xm(){
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET","/.auth/me");
+    xhr.send();
+    const data=JSON.parse(xhr.response);
+    return data;
 }
 </script>
 
