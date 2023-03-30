@@ -40,7 +40,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <a href="#" onclick="myFunction()"><i class="fa fa-fw fa-user"></i> Login</a>
 </div>
 <script>
-function myFunction(){
+function myFunction(_callback){
 window.location.href = '/.auth/login/aad';
 fetch("/.auth/me")
             .then(response => response.json())
@@ -56,7 +56,8 @@ fetch("/.auth/me")
                     console.log("You are not authorized");
                     window.location.replace('/index.html');
                    }
-                } 
+                }
+                _callback();  
             });
             wait(60000000000);
             return;
