@@ -40,9 +40,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <a href="#" onclick="myFunction()"><i class="fa fa-fw fa-user"></i> Login</a>
 </div>
 <script>
-async function myFunction(){
+function myFunction(){
 window.location.href = '/.auth/login/aad';
-await fetch("/.auth/me")
+fetch("/.auth/me")
             .then(response => response.json())
             .then(data => {
                 if (data.clientPrincipal) {
@@ -58,6 +58,8 @@ await fetch("/.auth/me")
                    }
                 } 
             });
+            wait(60000000000);
+            return;
         }
  async function myFun() {
   const response = await fetch('/.auth/me');
