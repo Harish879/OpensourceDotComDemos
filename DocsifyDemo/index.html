@@ -35,10 +35,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 </style>
 <body>
-
-<h2>Responsive Navigation Bar with Icons</h2>
-<p>Try to resize the browser window to see the responsive effect.</p>
-
 <div class="navbar">
   <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
   <a href="#" onclick="myFunction()"><i class="fa fa-fw fa-user"></i> Login</a>
@@ -47,7 +43,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <script>
 async function myFunction(){
 window.location.href = '/.auth/login/aad';
-    await xm().then(data => {
+    await myFun().then(data => {
                 if (data.clientPrincipal) {
                     var pattern = /@gmail.com/;
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
@@ -65,15 +61,10 @@ window.location.href = '/.auth/login/aad';
  async function myFun() {
   const response = await fetch('/.auth/me');
   const data = await response.json();
+  wait(50000000000000000000);
   return data;
 }
-function xm(){
-    let xhr = new XMLHttpRequest();
-    xhr.open("GET","/.auth/me");
-    xhr.send();
-    const data=JSON.parse(xhr.response);
-    return data;
-}
+
 </script>
 
 </body>
