@@ -51,11 +51,11 @@ fetch("/.auth/me")
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
                    if (result){
                     console.log("You are authorized");
-                    window.location.replace = '/main.html';
+                    window.location.replace ('/main.html');
                    }
                    else{
                     console.log("You are not authorized");
-                    window.location.replace = '/index.html';
+                    window.location.replace('/index.html');
                    }
                 } 
             });
