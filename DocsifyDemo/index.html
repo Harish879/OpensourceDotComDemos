@@ -1,49 +1,36 @@
-<!DOCTYPE html>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
+<!doctype html>
+<html lang="en">
 
-.navbar {
-  width: 100%;
-  background-color: #555;
-  overflow: auto;
-}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Static Web Apps - Authentication</title>
+</head>
 
-.navbar a {
-  float: left;
-  padding: 12px;
-  color: white;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.navbar a:hover {
-  background-color: #000;
-}
-
-.active {
-  background-color: #04AA6D;
-}
-
-@media screen and (max-width: 500px) {
-  .navbar a {
-    float: none;
-    display: block;
-  }
-}
-</style>
 <body>
-<div class="navbar">
-  <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
-  <a href="#" onclick="myFunction()"><i class="fa fa-fw fa-user"></i> Login</a>
-  <a href="/.auth/login/aad?post_login_redirect_uri=index.html"><i class="fa fa-fw fa-user"></i> Logout</a>
-</div>
-<script>
-function myFunction(){
-window.location.href = '/.auth/login/aad';
-        myFun().then(data => {
+    <h1>Qapitol QA Sauron - Documentation</h1>
+    <div id="loginButtons"></div>
+    <div id="userInfo">
+
+    </div>
+    <code id="userDetails">
+
+    </code>
+    <div id="apiResult">
+    </div>
+    <p id="data"></p>
+    <script>
+        const providers = ["aad"];
+        const loginButtons = document.getElementById("loginButtons");
+        providers.forEach(provider => {
+            const button = document.createElement("button");
+            button.innerText = 'Login with Microsoft';
+            button.onclick = () => {
+                window.location.href = `/.auth/login/${provider}`;
+            };
+            loginButtons.appendChild(button);
+        });
+           myFun().then(data => {
                 if (data.clientPrincipal) {
                     var pattern = /@gmail.com/;
                     var result = pattern.test(`${data.clientPrincipal.userDetails}`);
@@ -57,14 +44,11 @@ window.location.href = '/.auth/login/aad';
                    }
                 } 
             });
-        }
  async function myFun() {
   const response = await fetch('/.auth/me');
   const data = await response.json();
   return data;
 }
-
-</script>
-
+    </script>
 </body>
-</html> 
+</html>
