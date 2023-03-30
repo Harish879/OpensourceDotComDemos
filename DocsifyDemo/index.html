@@ -37,38 +37,36 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <body>
 <div class="navbar">
   <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a> 
-  <a href="#" onclick="myFunction()"><i class="fa fa-fw fa-user"></i> Login</a>
+  <a class="active" onclick="myFunction()"><i class="fa fa-fw fa-user"></i> Login</a>
+  <a href="/.auth/login/aad?post_login_redirect_uri=index.html"><i class="fa fa-fw fa-user"></i> Logout</a>
 </div>
 <script>
-function myFunction(_callback){
-window.location.href = '/.auth/login/aad';
-fetch("/.auth/me")
-            .then(response => response.json())
-            .then(data => {
-                if (data.clientPrincipal) {
-                    var pattern = /@gmail.com/;
-                    var result = pattern.test(`${data.clientPrincipal.userDetails}`);
-                   if (result){
-                    console.log("You are authorized");
-                    window.location.replace ('https://delightful-mushroom-01f63ea0f.2.azurestaticapps.net/main.html#/');
-                   }
-                   else{
-                    console.log("You are not authorized");
-                    window.location.replace('/index.html');
-                   }
-                }
-                 
-            });
-            wait(60000000000);
-            _callback(); 
-        }
- async function myFun() {
-  const response = await fetch('/.auth/me');
-  const data = await response.json();
-  return data;
-}
-
-</script>
+    function myFunction(){
+    window.location.href = '/.auth/login/aad';
+    fetch("/.auth/me")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.clientPrincipal) {
+                        var pattern = /@gmail.com/;
+                        var result = pattern.test(`${data.clientPrincipal.userDetails}`);
+                       if (result){
+                        console.log("You are authorized");
+                        window.location.href = '/main.html';
+                       }
+                       else{
+                        console.log("You are not authorized");
+                        window.location.href = '/index.html';
+                       }
+                    } 
+                });
+            }
+     async function myFun() {
+      const response = await fetch('/.auth/me');
+      const data = await response.json();
+      return data;
+    }
+    
+    </script>
 
 </body>
 </html> 
